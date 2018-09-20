@@ -8,7 +8,7 @@ namespace Quiz.Core.Interfaces
 {
     public interface IAsyncRepository<T> where T : Entity
     {
-        Task<T> GetByIdAsync(Guid id);
+        Task<T> GetByIdAsync(int id);
 
         Task<IEnumerable<T>> ListAllAsync();
 
