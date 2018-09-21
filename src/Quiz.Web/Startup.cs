@@ -27,8 +27,8 @@ namespace Quiz.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=DESKTOP-9PUKNUG\\KAJALSQL2012;Database=QuizTestDB;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<QuizTestContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connection)));
+            //var connection = @"Server=DESKTOP-9PUKNUG\\KAJALSQL2012;Database=QuizTestDB;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<QuizTestContext>(options => options.UseSqlServer(Configuration.GetConnectionString("QuizTestDBConnection")));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
