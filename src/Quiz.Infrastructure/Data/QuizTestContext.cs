@@ -9,7 +9,7 @@ namespace Quiz.Infrastructure.Data
 {
   public  class QuizTestContext:DbContext
     {
-        public QuizTestContext(DbContextOptions<DbContext> options) : base(options)
+        public QuizTestContext(DbContextOptions<QuizTestContext> options) : base(options)
         {
 
         }

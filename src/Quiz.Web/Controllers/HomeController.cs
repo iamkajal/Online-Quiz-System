@@ -4,12 +4,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Quiz.Core.Entities;
+using Quiz.Core.Interfaces;
 using Quiz.Web.Models;
 
 namespace Quiz.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAsyncRepository<Question> _questionRepository;
+        public HomeController(IAsyncRepository<Question> questionRepository)
+        {
+            this._questionRepository = questionRepository;
+        }
         public IActionResult Index()
         {
             return View();
