@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Quiz.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,4 +20,5 @@ namespace Quiz.Infrastructure.Data
         public DbSet<QuestionAnswer> QuestionAnswer { get; set; }
 
     }
+
 }
