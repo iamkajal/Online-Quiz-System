@@ -21,7 +21,6 @@ namespace Quiz.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Question>()
                 .HasOne<QuestionCategory>(qc => qc.QuestionCategory)
                 .WithMany(q => q.Question)
@@ -33,9 +32,6 @@ namespace Quiz.Infrastructure.Data
                 .WithMany(qo => qo.QuestionOptions)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
-
-            //modelBuilder.Entity<QuestionAnswer>()
-            //    .HasKey(qa => new { qa.Id, qa.QuestionId, qa.QuestionOptionId });
 
             modelBuilder.Entity<QuestionAnswer>()
                 .HasOne<Question>(q => q.Question)
@@ -49,9 +45,7 @@ namespace Quiz.Infrastructure.Data
                 .WithOne(qo => qo.QuestionAnswer)
                 .HasForeignKey<QuestionAnswer>(q => q.QuestionOptionId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-
+            
         }
     }
 
