@@ -10,7 +10,6 @@ namespace Quiz.Core.Entities
         public string QuestionOptionDetail { get; set; }
         public int QuestionsId { get; set; }
         public Question Question { get; set; }
-
         public QuestionAnswer QuestionAnswer { get; set; }
     }
 }
