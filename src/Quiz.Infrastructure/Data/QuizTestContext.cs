@@ -19,6 +19,40 @@ namespace Quiz.Infrastructure.Data
         public DbSet<QuestionOption> QuestionOption { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswer { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Question>()
+                .HasOne<QuestionCategory>(qc => qc.QuestionCategory)
+                .WithMany(q => q.Question)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<QuestionOption>()
+                .HasOne<Question>(q => q.Question)
+                .WithMany(qo => qo.QuestionOptions)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<QuestionAnswer>()
+            //    .HasKey(qa => new { qa.Id, qa.QuestionId, qa.QuestionOptionId });
+
+            modelBuilder.Entity<QuestionAnswer>()
+                .HasOne<Question>(q => q.Question)
+                .WithOne(qo => qo.QuestionAnswer)
+                .IsRequired()
+                .HasForeignKey<QuestionAnswer>(q => q.QuestionId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<QuestionAnswer>()
+                .HasOne<QuestionOption>(qo => qo.QuestionOption)
+                .WithOne(qo => qo.QuestionAnswer)
+                .HasForeignKey<QuestionAnswer>(q => q.QuestionOptionId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
+        }
     }
 
 }

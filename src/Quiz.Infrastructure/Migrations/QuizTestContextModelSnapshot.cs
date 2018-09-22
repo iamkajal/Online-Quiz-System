@@ -25,7 +25,7 @@ namespace Quiz.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("QuestionCategoryId");
+                    b.Property<int>("QuestionCategoryId");
 
                     b.Property<string>("QuestionTitle");
 
@@ -42,13 +42,17 @@ namespace Quiz.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("QuestionOptionId");
+                    b.Property<int>("QuestionId");
 
-                    b.Property<int>("QuestionsId");
+                    b.Property<int>("QuestionOptionId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionsId");
+                    b.HasIndex("QuestionId")
+                        .IsUnique();
+
+                    b.HasIndex("QuestionOptionId")
+                        .IsUnique();
 
                     b.ToTable("QuestionAnswer");
                 });
@@ -72,37 +76,46 @@ namespace Quiz.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("QuestionId")
+                        .IsRequired();
+
                     b.Property<string>("QuestionOptionDetail");
 
                     b.Property<int>("QuestionsId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionsId");
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("QuestionOption");
                 });
 
             modelBuilder.Entity("Quiz.Core.Entities.Question", b =>
                 {
-                    b.HasOne("Quiz.Core.Entities.QuestionCategory")
-                        .WithMany("Questions")
-                        .HasForeignKey("QuestionCategoryId");
+                    b.HasOne("Quiz.Core.Entities.QuestionCategory", "QuestionCategory")
+                        .WithMany("Question")
+                        .HasForeignKey("QuestionCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Quiz.Core.Entities.QuestionAnswer", b =>
                 {
-                    b.HasOne("Quiz.Core.Entities.Question", "Questions")
-                        .WithMany("QuestionAnswers")
-                        .HasForeignKey("QuestionsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("Quiz.Core.Entities.Question", "Question")
+                        .WithOne("QuestionAnswer")
+                        .HasForeignKey("Quiz.Core.Entities.QuestionAnswer", "QuestionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Quiz.Core.Entities.QuestionOption", "QuestionOption")
+                        .WithOne("QuestionAnswer")
+                        .HasForeignKey("Quiz.Core.Entities.QuestionAnswer", "QuestionOptionId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Quiz.Core.Entities.QuestionOption", b =>
                 {
-                    b.HasOne("Quiz.Core.Entities.Question", "Questions")
+                    b.HasOne("Quiz.Core.Entities.Question", "Question")
                         .WithMany("QuestionOptions")
-                        .HasForeignKey("QuestionsId")
+                        .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

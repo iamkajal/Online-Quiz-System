@@ -8,8 +8,9 @@ namespace Quiz.Core.Entities
    public class Question:Entity
     {
         public string QuestionTitle { get; set; }
-
+        public int QuestionCategoryId { get; set; }
+        public QuestionCategory QuestionCategory { get; set; }
         public ICollection<QuestionOption> QuestionOptions { get; set; }
-        public ICollection<QuestionAnswer> QuestionAnswers { get; set; }
+        public QuestionAnswer QuestionAnswer { get; set; }
     }
 }

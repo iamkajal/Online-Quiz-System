@@ -66,6 +66,11 @@ namespace Quiz.Infrastructure.Data
             return await _dbContext.Set<T>().ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> ListAllAsync(int id)
+        {
+            return await _dbContext.Set<T>().Include(p => p.Id == id).ToListAsync();
+        }
+
         public void Update(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;

@@ -11,7 +11,7 @@ namespace Quiz.Core.Interfaces
         Task<T> GetByIdAsync(int id);
 
         Task<IEnumerable<T>> ListAllAsync();
-
+        Task<IEnumerable<T>> ListAllAsync(int id);
         Task<T> AddAsync(T entity);
 
         Task UpdateAsync(T entity);

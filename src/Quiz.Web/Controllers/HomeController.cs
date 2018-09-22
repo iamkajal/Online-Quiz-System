@@ -35,11 +35,10 @@ namespace Quiz.Web.Controllers
             return View(questionCategories);
         }
 
-        public IActionResult About(int id)
+        public async Task<IActionResult> About(int id)
         {
-            ViewData["Message"] = "Your application description page." + id;
-
-            return View();
+            var question = await _questionCategoryRepository.ListAllAsync(id);
+            return View(question);
         }
 
         public IActionResult Contact()
