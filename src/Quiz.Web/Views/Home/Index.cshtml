@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Quiz.Core.Entities.QuestionCategory>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Learn how to build ASP.NET apps that can run anywhere.
+                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    There are powerful new features in Visual Studio for building modern web apps.
+                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
+                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Application uses</h2>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small>Donec id elit non mi porta.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-muted">3 days ago</small>
+                </div>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-muted">3 days ago</small>
+                </div>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Select Question Category</h2>
+        <ul class="list-group">
+            @foreach (var item in Model)
+            {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="@Url.Action("About","Home", new { id = item.Id })">
+                    @Html.DisplayFor(modelItem => item.QuestionCategoryName)
+                </a>
+                <span class="badge badge-primary badge-pill">14</span>
+            </li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Run &amp; Deploy</h2>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small>Donec id elit non mi porta.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-muted">3 days ago</small>
+                </div>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-muted">3 days ago</small>
+                </div>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+        </div>
+    </div>
+</div>
